@@ -7,6 +7,7 @@ import { Footer } from './components/Footer';
 import { Hero } from './sections/Hero';
 import { WorkExperience } from './sections/WorkExperience';
 import { Projects } from './sections/Projects';
+import { Toolkit } from './sections/Toolkit';
 import { Resume } from './sections/Resume';
 import { Now } from './sections/Now';
 import { Contact } from './sections/Contact';
@@ -37,6 +38,7 @@ export function App() {
         <Hero />
         <WorkExperience />
         <Projects />
+        <Toolkit />
         <Resume />
         <Now />
         <Contact />

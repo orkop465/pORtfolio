@@ -6,7 +6,7 @@ export function Resume() {
     <section className="section" id="resume" aria-labelledby="resume-title">
       <SectionReveal>
         <header className="section__head">
-          <p className="eyebrow">// 03 · résumé</p>
+          <p className="eyebrow">// 04 · résumé</p>
           <h2 className="serif-h2" id="resume-title">Résumé.</h2>
           <p className="lede dim">
             One page, mono, opinionated. Download as PDF.

@@ -5,6 +5,10 @@ import { SectionReveal } from '../components/SectionReveal';
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'ok' } | { kind: 'err'; msg: string };
 
+const NAME_MAX = 100;
+const EMAIL_MAX = 254;
+const MESSAGE_MAX = 5000;
+
 export function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -47,18 +51,21 @@ export function Contact() {
         <form className="contact" onSubmit={onSubmit} noValidate>
           <div className="contact__field">
             <label htmlFor="c-name">Name</label>
-            <input id="c-name" name="name" autoComplete="name"
+            <input id="c-name" name="name" autoComplete="name" maxLength={NAME_MAX}
               value={name} onChange={(e) => setName(e.target.value)} required />
           </div>
           <div className="contact__field">
             <label htmlFor="c-email">Email</label>
-            <input id="c-email" name="email" type="email" autoComplete="email"
+            <input id="c-email" name="email" type="email" autoComplete="email" maxLength={EMAIL_MAX}
               value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <div className="contact__field">
             <label htmlFor="c-msg">Message</label>
-            <textarea id="c-msg" name="message" rows={5}
+            <textarea id="c-msg" name="message" rows={5} maxLength={MESSAGE_MAX}
               value={message} onChange={(e) => setMessage(e.target.value)} required />
+            <p className="contact__count dim" aria-live="polite">
+              {message.length} / {MESSAGE_MAX}
+            </p>
           </div>
           <button type="submit" className="contact__submit" disabled={sending}>
             <span>{sending ? 'sending…' : 'send'}</span>

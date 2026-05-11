@@ -26,6 +26,7 @@ export type Experience = {
 
 export type NowItem = { date: string; body: string };
 export type SocialLink = { label: string; href: string };
+export type ToolkitCategory = { label: string; tags: string[] };
 
 export const profile = {
   name: 'or.kop',
@@ -116,6 +117,14 @@ export const projects: Project[] = [
     blurb: 'Placeholder. Replace in src/data/portfolio.ts.',
     href: '#',
   },
+];
+
+export const toolkit: ToolkitCategory[] = [
+  { label: 'languages', tags: ['typescript', 'python', 'rust', 'go', 'glsl'] },
+  { label: 'runtime',   tags: ['node', 'bun', 'deno', 'docker', 'kubernetes'] },
+  { label: 'data',      tags: ['postgres', 'redis', 'duckdb', 'parquet', 'kafka'] },
+  { label: 'front',     tags: ['react', 'three.js', 'vite', 'framer-motion'] },
+  { label: 'design',    tags: ['figma', 'blender', 'ableton'] },
 ];
 
 export const nowItems: NowItem[] = [

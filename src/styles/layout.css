@@ -317,6 +317,65 @@ main {
   .now-row { grid-template-columns: 1fr; gap: 0.4rem; }
 }
 
+/* toolkit */
+.toolkit {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 0.4rem;
+}
+.toolkit-row {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1.4rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule);
+}
+.toolkit-row:last-child { border-bottom: 1px solid var(--rule); }
+.toolkit-row__label {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--fg-dim);
+  align-self: start;
+  padding-top: 0.2rem;
+}
+.toolkit-row__tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  color: var(--bone);
+  line-height: 1.65;
+}
+.toolkit-tag {
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.toolkit-tag::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--copper);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.toolkit-tag:hover { color: var(--copper); }
+.toolkit-tag:hover::before { transform: scaleX(1); }
+
+@media (max-width: 640px) {
+  .toolkit-row { grid-template-columns: 1fr; gap: 0.45rem; }
+}
+
 /* contact form */
 .contact {
   display: flex;
@@ -349,6 +408,13 @@ main {
   border-bottom-color: var(--copper);
 }
 .contact__field textarea { min-height: 7rem; resize: vertical; line-height: 1.6; }
+.contact__count {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-align: right;
+}
 
 .contact__submit {
   align-self: flex-start;

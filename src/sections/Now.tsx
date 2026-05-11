@@ -6,7 +6,7 @@ export function Now() {
     <section className="section" id="now" aria-labelledby="now-title">
       <SectionReveal>
         <header className="section__head">
-          <p className="eyebrow">// 04 · now</p>
+          <p className="eyebrow">// 05 · now</p>
           <h2 className="serif-h2" id="now-title">Now.</h2>
           <p className="lede dim">
             In the spirit of <a href="https://nownownow.com/about" target="_blank" rel="noreferrer" className="link">/now</a>. What I'm doing this week, this quarter.

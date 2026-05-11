@@ -7,7 +7,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = Number(process.env.PORT) || 8080;
 
-app.use(express.json());
+app.use(express.json({ limit: '20kb' }));
+
+const CONTACT_LIMITS = { name: 100, email: 254, message: 5000 };
 
 // Contact form submission
 app.post('/api/contact', async (req, res) => {
@@ -15,6 +17,13 @@ app.post('/api/contact', async (req, res) => {
     const { name, email, message } = req.body || {};
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return res.status(400).json({ message: 'Name, email, and message are required.' });
+    }
+    if (
+      name.length > CONTACT_LIMITS.name ||
+      email.length > CONTACT_LIMITS.email ||
+      message.length > CONTACT_LIMITS.message
+    ) {
+      return res.status(400).json({ message: 'One or more fields exceed the allowed length.' });
     }
 
     const apiKey = process.env.RESEND_API_KEY;

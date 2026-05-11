@@ -4,6 +4,7 @@ import { useActiveSection } from '../hooks/useActiveSection';
 const SECTIONS: { id: string; label: string }[] = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects',   label: 'Projects' },
+  { id: 'toolkit',    label: 'Toolkit' },
   { id: 'resume',     label: 'Résumé' },
   { id: 'now',        label: 'Now' },
   { id: 'contact',    label: 'Contact' },
