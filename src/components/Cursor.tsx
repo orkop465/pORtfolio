@@ -22,15 +22,44 @@ export function Cursor() {
 
   useEffect(() => {
     if (!enabled) return;
+    const HOVER_SELECTORS =
+      '.nav-links a, .now-card, .exp-entry, .proj, .skill-col li, .btn, .aside-link';
+    const last = { x: 0, y: 0, has: false };
+    let currentHover: Element | null = null;
+    const evalAt = (x: number, y: number) => {
+      const el = document.elementFromPoint(x, y) as Element | null;
+      const labelEl = el?.closest?.('[data-cursor]') as HTMLElement | null;
+      setLabel(labelEl ? labelEl.getAttribute('data-cursor') ?? '' : '');
+      const hoverEl = el?.closest?.(HOVER_SELECTORS) as Element | null;
+      if (hoverEl !== currentHover) {
+        currentHover?.classList.remove('is-hover');
+        hoverEl?.classList.add('is-hover');
+        currentHover = hoverEl;
+      }
+    };
     const onMove = (e: MouseEvent) => {
       target.current = { x: e.clientX, y: e.clientY };
+      last.x = e.clientX;
+      last.y = e.clientY;
+      last.has = true;
+      evalAt(e.clientX, e.clientY);
     };
-    const onOver = (e: MouseEvent) => {
-      const t = (e.target as Element | null)?.closest?.('[data-cursor]') as HTMLElement | null;
-      setLabel(t ? t.getAttribute('data-cursor') ?? '' : '');
+    const onScroll = () => {
+      setLabel('');
+      if (currentHover) {
+        currentHover.classList.remove('is-hover');
+        currentHover = null;
+      }
+    };
+    const onLeave = () => {
+      last.has = false;
+      setLabel('');
+      currentHover?.classList.remove('is-hover');
+      currentHover = null;
     };
     window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseover', onOver);
+    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
+    document.addEventListener('mouseleave', onLeave);
     let raf = 0;
     const tick = () => {
       pos.current.x += (target.current.x - pos.current.x) * 0.22;
@@ -43,8 +72,10 @@ export function Cursor() {
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
+      currentHover?.classList.remove('is-hover');
       window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseover', onOver);
+      window.removeEventListener('scroll', onScroll, { capture: true } as EventListenerOptions);
+      document.removeEventListener('mouseleave', onLeave);
     };
   }, [enabled]);
 

@@ -188,8 +188,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav-links a.is-active { color: var(--ink); }
 .nav-links a.is-active::after { transform: scaleX(1); background: var(--accent); }
 @media (hover: hover) {
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links a.is-hover { color: var(--ink); }
+  .nav-links a.is-hover::after { transform: scaleX(1); }
 }
 
 @keyframes pulse {
@@ -280,7 +280,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 @media (hover: hover) {
-  .now-card:hover { transform: translate(-3px, -3px); box-shadow: 4px 4px 0 var(--ink); }
+  .now-card.is-hover { transform: translate(-3px, -3px); box-shadow: 4px 4px 0 var(--ink); }
 }
 .now-card .now-head {
   display: flex;
@@ -499,8 +499,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: height 0.4s var(--ease);
 }
 @media (hover: hover) {
-  .exp-entry:hover { padding-left: 24px; }
-  .exp-entry:hover::before { height: 70%; }
+  .exp-entry.is-hover { padding-left: 24px; }
+  .exp-entry.is-hover::before { height: 70%; }
 }
 .exp-year { font-family: var(--mono); font-size: 13px; color: var(--accent); }
 .exp-loc {
@@ -609,7 +609,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .proj:nth-child(2n) { border-right: 0; }
 @media (hover: hover) {
-  .proj:hover { background: var(--paper-3); }
+  .proj.is-hover { background: var(--paper-3); }
 }
 .proj::after {
   content: "";
@@ -623,7 +623,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: transform 0.5s var(--ease);
 }
 @media (hover: hover) {
-  .proj:hover::after { transform: scaleX(1); }
+  .proj.is-hover::after { transform: scaleX(1); }
 }
 .proj-row {
   display: flex;
@@ -705,7 +705,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .proj-cta .arrow { transition: transform 0.3s var(--ease); }
 @media (hover: hover) {
-  .proj:hover .proj-cta .arrow { transform: translateX(6px); }
+  .proj.is-hover .proj-cta .arrow { transform: translateX(6px); }
 }
 
 /* ── Skills / Toolkit ── */
@@ -745,7 +745,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: transform 0.35s var(--ease), color 0.35s var(--ease);
 }
 @media (hover: hover) {
-  .skill-col li:hover > span {
+  .skill-col li.is-hover > span {
     color: var(--accent);
     transform: translateX(8px) skewX(-10deg);
   }
@@ -839,8 +839,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .btn .arrow { transition: transform 0.25s var(--ease); }
 @media (hover: hover) {
-  .btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
-  .btn:hover .arrow { transform: translate(2px, -2px); }
+  .btn.is-hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+  .btn.is-hover .arrow { transform: translate(2px, -2px); }
 }
 .btn[disabled] { opacity: 0.55; cursor: not-allowed; transform: none; background: var(--ink); border-color: var(--ink); }
 
@@ -883,8 +883,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .aside-link .arrow { transition: transform 0.25s var(--ease); }
 @media (hover: hover) {
-  .aside-link:hover { color: var(--accent); }
-  .aside-link:hover .arrow { transform: translate(2px, -2px); }
+  .aside-link.is-hover { color: var(--accent); }
+  .aside-link.is-hover .arrow { transform: translate(2px, -2px); }
 }
 
 /* ── Colophon ── */
