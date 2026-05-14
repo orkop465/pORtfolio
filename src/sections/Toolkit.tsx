@@ -1,31 +1,33 @@
 import { toolkit } from '../data/portfolio';
-import { SectionReveal } from '../components/SectionReveal';
+import { SplitText } from '../components/SplitText';
 
 export function Toolkit() {
   return (
     <section className="section" id="toolkit" aria-labelledby="toolkit-title">
-      <SectionReveal>
-        <header className="section__head">
-          <p className="eyebrow">// 03 · toolkit</p>
-          <h2 className="serif-h2" id="toolkit-title">Toolkit.</h2>
-          <p className="lede dim">What's on the workbench.</p>
-        </header>
-      </SectionReveal>
-
-      <SectionReveal delay={0.08}>
-        <div className="toolkit">
-          {toolkit.map((cat) => (
-            <article key={cat.label} className="toolkit-row">
-              <span className="toolkit-row__label">{cat.label}</span>
-              <ul className="toolkit-row__tags" role="list">
-                {cat.tags.map((t) => (
-                  <li key={t} className="toolkit-tag">{t}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
+      <div className="section-head">
+        <div className="section-tag">
+          <span className="num">04</span>
+          <span className="dash" />
+          <span>Toolkit</span>
         </div>
-      </SectionReveal>
+        <h2 className="section-title" id="toolkit-title">
+          <span className="row"><SplitText text="The" /></span>
+          <span className="row"><em><SplitText text="stack." delayBase={140} /></em></span>
+        </h2>
+        <span aria-hidden="true" />
+      </div>
+      <div className="skills">
+        {toolkit.map((cat) => (
+          <div key={cat.label} className="skill-col">
+            <h4>{cat.label}</h4>
+            <ul>
+              {cat.tags.map((s) => (
+                <li key={s}><span>{s}</span></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

@@ -1,46 +1,35 @@
-import * as THREE from 'three';
-import { useLoader } from '@react-three/fiber';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { SkipLink } from './components/SkipLink';
-import { Nav } from './components/Nav';
+import { Cursor } from './components/Cursor';
+import { Topbar } from './components/Topbar';
 import { Footer } from './components/Footer';
 import { Hero } from './sections/Hero';
+import { Stats } from './sections/Stats';
+import { About } from './sections/About';
+import { Marquee } from './sections/Marquee';
 import { WorkExperience } from './sections/WorkExperience';
 import { Projects } from './sections/Projects';
 import { Toolkit } from './sections/Toolkit';
-import { Resume } from './sections/Resume';
-import { Now } from './sections/Now';
+import { Education } from './sections/Education';
 import { Contact } from './sections/Contact';
-
-// Preload GLBs into R3F's loader cache so the first hover doesn't wait on a
-// fresh fetch + parse. Small GLBs warm immediately (cheap, hover may come
-// fast). The 16 MB UB v2 model waits for requestIdleCallback so it doesn't
-// compete with critical above-the-fold assets for bandwidth.
-THREE.Cache.enabled = true;
-if (typeof window !== 'undefined') {
-  for (const url of ['/models/amazon_2.glb', '/models/ub1.glb']) {
-    useLoader.preload(GLTFLoader, url);
-  }
-  const idle = (cb: () => void) => {
-    const w = window as unknown as { requestIdleCallback?: (cb: () => void) => number };
-    if (typeof w.requestIdleCallback === 'function') w.requestIdleCallback(cb);
-    else window.setTimeout(cb, 1500);
-  };
-  idle(() => useLoader.preload(GLTFLoader, '/models/ub2.glb'));
-}
+import { marqueeItems } from './data/portfolio';
+import { useReveal } from './hooks/useReveal';
 
 export function App() {
+  useReveal();
   return (
     <>
       <SkipLink />
-      <Nav />
+      <Cursor />
+      <Topbar />
       <main id="content">
         <Hero />
+        <Stats />
+        <About />
+        <Marquee items={marqueeItems} speed={32} />
         <WorkExperience />
         <Projects />
         <Toolkit />
-        <Resume />
-        <Now />
+        <Education />
         <Contact />
       </main>
       <Footer />

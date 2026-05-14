@@ -4,22 +4,6 @@ import react from '@vitejs/plugin-react';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    include: [
-      'three',
-      '@react-three/fiber',
-      'framer-motion',
-    ],
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-three': ['three', '@react-three/fiber'],
-        },
-      },
-    },
-  },
   server: {
     host: true,
     port: 5173,

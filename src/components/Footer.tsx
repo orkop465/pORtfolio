@@ -1,11 +1,8 @@
-import { profile } from '../data/portfolio';
-
 export function Footer() {
-  const year = new Date().getFullYear();
   return (
-    <footer className="footer" role="contentinfo">
-      <span>© {year} — <span className="mark">{profile.name}</span></span>
-      <span>made with type & one rotating wireframe.</span>
+    <footer className="colophon mono">
+      <span>orkop.dev · {new Date().getFullYear()}</span>
+      <span>replies within a few days</span>
     </footer>
   );
 }

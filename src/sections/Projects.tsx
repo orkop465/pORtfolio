@@ -1,45 +1,62 @@
 import { projects } from '../data/portfolio';
-import { SectionReveal } from '../components/SectionReveal';
-import { ArtefactHover } from '../wow/ArtefactHover';
-import { useReducedMotion } from '../hooks/useReducedMotion';
+import { SplitText } from '../components/SplitText';
 
 export function Projects() {
-  const reduced = useReducedMotion();
-
   return (
     <section className="section" id="projects" aria-labelledby="projects-title">
-      <SectionReveal>
-        <header className="section__head">
-          <p className="eyebrow">// 02 · projects</p>
-          <h2 className="serif-h2" id="projects-title">Selected work.</h2>
-          <p className="lede dim">Hover a row. The artefact comes to meet you.</p>
-        </header>
-      </SectionReveal>
-
-      <SectionReveal delay={0.08}>
-        <ul className="work-list" role="list">
-          {projects.map((p, i) => (
-            <li
+      <div className="section-head">
+        <div className="section-tag">
+          <span className="num">03</span>
+          <span className="dash" />
+          <span>Projects</span>
+        </div>
+        <h2 className="section-title" id="projects-title">
+          <span className="row"><SplitText text="Selected" /></span>
+          <span className="row"><em><SplitText text="work." delayBase={280} /></em></span>
+        </h2>
+        <span aria-hidden="true" />
+      </div>
+      <div className="proj-grid">
+        {projects.map((p, i) => {
+          const isLink = !!p.href && p.href !== '#';
+          const Tag = isLink ? 'a' : 'div';
+          const linkProps = isLink
+            ? {
+                href: p.href,
+                target: p.href!.startsWith('http') ? '_blank' : undefined,
+                rel: 'noreferrer',
+              }
+            : {};
+          return (
+            <Tag
               key={p.slug}
-              className="work-row"
-              data-artefact-row=""
-              data-idx={String(i)}
-              tabIndex={0}
+              className="proj"
+              data-cursor={isLink ? 'open' : 'soon'}
+              {...linkProps}
             >
-              <span className="work-row__copper-dot" aria-hidden="true" />
-              <span className="work-row__ix">{String(i + 1).padStart(2, '0')}</span>
-              <a href={p.href ?? '#'} className="work-row__name">
-                <span>{p.name}</span>
-                <span className="work-row__arrow" aria-hidden="true">→</span>
-              </a>
-              <span className="work-row__role">{p.role}</span>
-              <span className="work-row__year">{p.year}</span>
-            </li>
-          ))}
-        </ul>
-      </SectionReveal>
-
-      <ArtefactHover enabled={!reduced} />
+              <div className="proj-row">
+                <span className="proj-n">№ {String(i + 1).padStart(2, '0')} · {p.year}</span>
+                <span className="proj-tag">{p.tag}</span>
+              </div>
+              <h3 className="proj-name">
+                {p.name}
+                <em>.</em>
+              </h3>
+              <p className="proj-blurb">{p.blurb}</p>
+              <div className="proj-foot">
+                <div className="proj-stack">
+                  {p.stack.map((s) => (
+                    <span key={s}>{s}</span>
+                  ))}
+                </div>
+                <span className="proj-cta">
+                  {isLink ? 'Read more' : 'Coming soon'} <span className="arrow">→</span>
+                </span>
+              </div>
+            </Tag>
+          );
+        })}
+      </div>
     </section>
   );
 }

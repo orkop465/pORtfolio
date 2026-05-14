@@ -37,7 +37,7 @@ app.post('/api/contact', async (req, res) => {
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          from: 'Portfolio <onboarding@resend.dev>',
+          from: 'Portfolio <hello@orkop.dev>',
           to: [toEmail],
           reply_to: email,
           subject: `Portfolio contact from ${name}`,
